@@ -1,0 +1,260 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; /* Tambahan: Untuk manajemen padding & border */
+}
+
+body {
+    font-family: "EB Garamond", serif; /* Perbaikan: Font didefinisikan sekali */
+    font-weight: 400; /* Perbaikan: Menggunakan nilai valid */
+    font-style: normal;
+    overflow-x: hidden;
+    background-color: #e4c5af;
+}
+
+
+
+nav {
+    display: flex;
+    background-color: #970747;  
+    justify-content: space-around;  
+    color: #ffffff; 
+    height: 50px;   
+    align-items: center;  
+}
+
+nav .logo {
+  font-family: "Pacifico", cursive;
+  letter-spacing: 3px;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+    width: 40%;
+    justify-content: space-between;
+}
+
+nav ul li a {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 0.9em; /* PERBAIKAN: Menggunakan titik (.) */
+    padding: 0 5px;
+}
+
+nav ul li a:hover {
+    color: #fbd3ac;
+}
+
+.menu-toggle {
+    display: none;
+    flex-direction: column ;
+    height: 20px;
+    justify-content: space-between;
+    position: relative;
+}
+
+.menu-toggle input {
+    position: absolute;
+    width: 40px;
+    height: 28px;
+    left: -5px;
+    top: -3px;
+    opacity: 0;
+    cursor: pointer;
+    z-index: 2;
+}
+
+
+.menu-toggle span {
+    display: block;
+    width: 28px;
+    height: 3px;
+    background-color: #ffffff; 
+    border-radius: 3px;
+    transition: all 0.5s;
+}
+
+
+.menu-toggle span:nth-child(2) {
+    transform-origin: 0 0;
+}
+ 
+.menu-toggle span:nth-child(4) {
+    transform-origin: 0 100%;
+}
+ 
+.menu-toggle input:checked ~ span:nth-child(2) {
+    transform: rotate(45deg) translate(-1px, -1px);
+    background-color: white;
+}
+.menu-toggle input:checked ~ span:nth-child(4) {
+     transform: rotate(-45deg) translate(-1px, 0);
+     background-color: white;
+}
+ 
+.menu-toggle input:checked ~ span:nth-child(3) {
+    opacity: 0;
+     transform: scale(0)
+}
+
+
+.hero {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center; 
+  align-items: center;     
+  background-color: #e4c5af;
+  text-align: center;
+}
+
+.hero h2 {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+}
+
+.hero p {
+  max-width: 500px;
+  margin-bottom: 15px;
+  color: #3e5526;
+}
+
+.hero-content {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.hero-img img {
+  width: 220px;          
+  height: 220px;
+  object-fit: cover;     
+  border-radius: 50%;    
+  margin: 20px;
+  box-shadow: 0 10px 25px #481718;
+}
+
+.btn {
+  display: inline-block;
+  margin-top: 15px;
+  padding: 10px 20px;
+  background-color:#1d3309;
+  color: #fff;
+  text-decoration: none;
+}
+
+
+section {
+  padding: 60px 40px;
+}
+
+section h2 {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+
+.about p {
+  max-width: 700px;
+  margin: auto;
+  text-align: center;
+}
+
+
+.portfolio-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+}
+
+.card {
+  padding: 40px;
+  background-color: #970747;
+  text-align: center;
+  color: #ffffff;
+}
+
+
+.skills-flex {
+  display: flex;
+  justify-content: center;
+  gap: 50px;
+}
+
+.skills ul {
+  list-style: none;
+}
+
+
+.contact-form {
+  max-width: 500px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.contact-form input,
+.contact-form textarea {
+  padding: 10px;
+}
+
+.contact-form button {
+  padding: 10px;
+  background-color: #970747;
+  color: #ffffff;
+  border: none;
+}
+
+
+.footer {
+  text-align: center;
+  padding: 20px;
+  background-color: #970747;
+  color: #ffffff;
+}
+
+/* MEDIA QUERIES UNTUK RESPONSIVITAS */
+
+@media screen and (max-width: 768px) {
+    nav ul {
+        width: 50%; /* Disesuaikan sedikit */
+    }
+}
+
+
+@media screen and (max-width: 576px) {
+    .menu-toggle {
+        display: flex;
+        z-index: 2; /* PERBAIKAN: Agar tombol hamburger selalu di atas menu */
+    }
+    nav ul {
+        position: fixed; /* Menggunakan fixed agar tidak ikut di scroll */
+        right: 0;
+        top: 0;
+        width: 70%;
+        height: 100vh;
+        justify-content: space-evenly;
+        flex-direction: column;
+        align-items: center;
+        background-color: #970747;
+        z-index: 1; /* PERBAIKAN KRUSIAL: Ubah dari -1 ke 1 agar menu dapat diklik */
+        transform: translateX(100%);
+        transition: all 0.5s; /* Transisi dipercepat */
+        /* opacity: 0; dihapus */
+    }
+    /* Kelas 'slide' ditambahkan oleh JavaScript */
+    nav ul.slide {
+        /* opacity: 1; dihapus */
+        transform: translateX(0);
+    }
+    
+    .skills-flex {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .skills ul {
+        text-align: center;
+    }
+}
